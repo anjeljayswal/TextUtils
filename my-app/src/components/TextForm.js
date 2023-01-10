@@ -23,6 +23,15 @@ export default function TextForm(props) {
         let newT = text[0].toUpperCase() + text.substring(1);
         setText(newT)
     }
+    const handleCopyClick=()=>{
+        var text = document.getElementById("myBox");
+        text.select();
+        navigator.clipboard.writeText(text.value);
+    }
+    const handleExtraSpaces = () =>{
+        let newText = text.split(/[ ]+/);
+        setText(newText.join(" "))
+    }
     const handleClearClick=()=>{
         setText("");
     }
@@ -38,10 +47,12 @@ export default function TextForm(props) {
         <div className="mb-3">
             <textarea className="form-control" value={text} onChange={handleonChange} id="myBox" rows="8"></textarea>
         </div>
-        <button onClick={handleUpClick} className="btn btn-primary mx-2">Convert to UpperCase</button>
-        <button onClick={handleLoClick} className="btn btn-primary mx-2">Convert to LowerCase</button>
-        <button onClick={handleFirstClick} className="btn btn-primary mx-2">Captialize Case</button>
-        <button onClick={handleClearClick} className="btn btn-primary mx-2">Clear All</button>
+        <button onClick={handleUpClick} className="btn btn-primary mx-1">ToUpperCase</button>
+        <button onClick={handleLoClick} className="btn btn-primary mx-1">ToLowerCase</button>
+        <button onClick={handleFirstClick} className="btn btn-primary mx-1">ToCaptialize</button>
+        <button onClick={handleCopyClick} className="btn btn-primary mx-1">CopyText</button>
+        <button onClick={handleExtraSpaces} className="btn btn-primary mx-1">RemoveExtraSpace</button>
+        <button onClick={handleClearClick} className="btn btn-primary mx-1">Clear All</button>
     </div>
     <div className="container my-4">
         <h1>Your text summary</h1>
